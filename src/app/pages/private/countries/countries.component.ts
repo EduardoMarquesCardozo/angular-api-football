@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountryList } from 'src/app/data/country';
-import { ISeasons } from 'src/app/data/season';
 import { CountryService } from 'src/app/services/country-service';
 import { SeasonService } from 'src/app/services/season-service';
 

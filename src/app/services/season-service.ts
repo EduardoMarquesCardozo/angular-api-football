@@ -1,8 +1,8 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { map  } from 'rxjs/operators';
 import { environment } from "../environments/environment";
-import { ISeasons } from "../data/season";
+import { IPaginationList } from "../data/paging";
 
 @Injectable({ providedIn: 'root' })
 export class SeasonService {
@@ -10,7 +10,7 @@ export class SeasonService {
     constructor(private http: HttpClient) {}
       
     listSeasons() {
-        return this.http.get<ISeasons>(`${environment.apiUrl}/leagues/seasons`)
+        return this.http.get<IPaginationList<number>>(`${environment.apiUrl}/leagues/seasons`)
         .pipe(map(response => {
             return response.response;
         }));
