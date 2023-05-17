@@ -19,7 +19,7 @@ export class AuthService {
         this.key = this.keySubject.asObservable();
     }
 
-    public get userValue() {
+    public get keyValue() {
         return this.keySubject.value;
     }
       

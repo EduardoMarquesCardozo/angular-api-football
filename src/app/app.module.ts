@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/public/login/login.component';
 import { CountriesComponent } from './pages/private/countries/countries.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BasicAuthInterceptor } from './services/interceptors/basic-auth.interceptor';
+import { ErrorInterceptor } from './services/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
