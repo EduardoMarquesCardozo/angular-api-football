@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+
+body{
+    font-family: 'Roboto';
+    font-style: normal;
+    margin: 0px;
+    color: #272e3b;
+    background-color: #eaecf1;
+}
+
+.ms{margin: 16px;}
+.mm{margin: 32px;}
+.ml{margin: 64px;}
+
+.ps{padding: 16px;}
+.pm{padding: 32px;}
+.pl{padding: 64px;}
+
+.flex{  display: flex;}
+.column{flex-direction: column;}
+.row{   flex-direction: row;}
+.center{
+    align-items: center;
+    justify-content: center;
+}
+
+h3{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+}
+p{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+}
+span{
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+}
+button{
+    border-radius: 25px;
+}
+
