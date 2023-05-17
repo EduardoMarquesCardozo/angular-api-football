@@ -27,6 +27,12 @@ body{
     justify-content: center;
 }
 
+.container{
+    gap: 24px;
+    background-color: #FFF;
+    border-radius: 25px;
+}
+
 h3{
     font-weight: 700;
     font-size: 24px;
@@ -42,7 +48,26 @@ span{
     font-size: 8px;
     line-height: 8px;
 }
+
 button{
+    border: 1px solid #a0ceff;
+    background: #66AFFF;
     border-radius: 25px;
+    color: #FFF;
+    width: 100%;
+    &:hover{
+        border: 1px solid #66AFFF;
+        background:  #5491d1;
+    }
+}
+
+input{
+    border: 1px solid #E4EBFB;
+    border-radius: 4px;
+    background: #FFFFFF;
+    padding: 16px;
+    :focus{
+        border: 1px solid #66AFFF;
+    }
 }
 
