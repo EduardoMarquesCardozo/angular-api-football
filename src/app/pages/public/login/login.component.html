@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="flex center">
+    <div class="login-container pm flex column">
+        <h3>
+            Olá, insira sua chave da api-football.
+        </h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="flex column">
+                <label>Chave</label>
+                <input type="text" placeholder="Chave de acesso" formControlName="key" />
+                <label class="alert" *ngIf="(form.get('key')?.hasError('required')  && (form.get('key')?.touched || form.get('key')?.dirty) )">
+                    Favor informar uma chave
+                </label>
+            </div>
+            <div class="button">
+                <button type="submit" class="ps">{{sendingData ? "Entrando...": "Entrar"}}</button>
+                <label class="alert" *ngIf="error">
+                    Chave informada não existe
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
