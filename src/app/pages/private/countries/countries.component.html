@@ -4,7 +4,7 @@
     </h3>
     <div class="flex column">
         <label>País</label>
-        <input type="text" list="codes" placeholder="Buscar país pelo nome" [(ngModel)]="codeValue"/>
+        <input type="text" list="codes" placeholder="Buscar país pelo nome" [(ngModel)]="countryValue"/>
     </div>
     <datalist id="codes">
         <option *ngFor="let c of countries" [value]="c.name" >{{c.name}}</option>
