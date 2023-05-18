@@ -11,12 +11,12 @@ import { SeasonService } from 'src/app/services/season-service';
 })
 export class CountriesComponent implements OnInit {
   error: boolean =false;
-  codeValue: string ='';
+  countryValue: string ='';
   seasonValue: string ='';
   countries: CountryList[] =[];
   seasons: number[] =[];
   
-  constructor(private router: Router, private contryService: CountryService , private seasonService: SeasonService ) {}
+  constructor(private router: Router, private countryService: CountryService , private seasonService: SeasonService ) {}
 
   ngOnInit(): void {
     this.listCountries();
@@ -33,7 +33,7 @@ export class CountriesComponent implements OnInit {
 }
 
   listCountries(){
-      this.contryService.listCountries()
+      this.countryService.listCountries()
       .subscribe(
           (val) => {
             this.countries = val.response;
@@ -42,7 +42,7 @@ export class CountriesComponent implements OnInit {
   }
 
   isValuesFilled(){
-    let country = this.countries.find(x => x?.name === this.codeValue);
+    let country = this.countries.find(x => x?.name === this.countryValue);
     let season = this.seasons.find(x => x === parseInt(this.seasonValue));
     if(country && season){
       return false;
