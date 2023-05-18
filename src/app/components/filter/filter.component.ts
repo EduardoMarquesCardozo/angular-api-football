@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CountryList } from 'src/app/data/country';
+import { CountryResponse } from 'src/app/data/country';
+import { LeagueResponse } from 'src/app/data/league';
+import { TeamsResponse } from 'src/app/data/teams';
 import { CountryService } from 'src/app/services/country-service';
 import { LeagueService } from 'src/app/services/league-service';
 import { SeasonService } from 'src/app/services/season-service';
+import { TeamService } from 'src/app/services/team-service';
 
 @Component({
   selector: 'app-filter',
@@ -14,14 +17,19 @@ export class FilterComponent implements OnInit {
   error: boolean =false;
   countryValue: string ='';
   seasonValue: string ='';
-  countries: CountryList[] =[];
+  leagueValue: string ='';
+  teamValue: string ='';
+  countries: CountryResponse[] =[];
   seasons: number[] =[];
+  leagues: LeagueResponse[] =[];
+  teams: TeamsResponse[] =[];
   
   constructor(
     private router: Router, 
     private countryService: CountryService, 
     private seasonService: SeasonService,
-    private leagueService: LeagueService ) {}
+    private leagueService: LeagueService,
+    private teamService: TeamService,) {}
 
   ngOnInit(): void {
     this.listCountries();
@@ -70,7 +78,19 @@ export class FilterComponent implements OnInit {
       this.leagueService.listLeagues(this.countryValue, this.getSeasonValue())
       .subscribe(
           (val) => {
-            console.log(val);
+            this.leagues = val;
+          }
+      );
+    }
+  }
+
+  searchTeams(){
+    let league = this.leagues.find(x => x?.league.name === this.leagueValue);
+    if(!!league){
+      this.teamService.listTeams(league.league.id, parseInt(this.seasonValue))
+      .subscribe(
+          (val) => {
+            this.teams = val;
           }
       );
     }

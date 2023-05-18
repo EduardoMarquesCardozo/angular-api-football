@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IPaginationList } from 'src/app/data/paging';
-import { CountryList } from 'src/app/data/country';
+import { CountryResponse } from 'src/app/data/country';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CountryService } from 'src/app/services/country-service';
@@ -10,7 +10,7 @@ import { FilterComponent } from './filter.component';
 
 class CountryServiceMock {
   listCountries() {
-    const countryList: IPaginationList<CountryList> = {
+    const countryList: IPaginationList<CountryResponse> = {
       get: "countries",
       parameters: [],
       errors: [],

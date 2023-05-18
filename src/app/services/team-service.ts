@@ -1,19 +1,19 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { map  } from 'rxjs/operators';
 import { environment } from "../environments/environment";
-import { CountryResponse } from "../data/country";
 import { IPaginationList } from "../data/paging";
+import { TeamsResponse } from "../data/teams";
 
 @Injectable({ providedIn: 'root' })
-export class CountryService {
+export class TeamService {
 
     constructor(private http: HttpClient) {}
       
-    listCountries() {
-        return this.http.get<IPaginationList<CountryResponse>>(`${environment.apiUrl}/countries`)
+    listTeams(league: number, season: number) {
+        return this.http.get<IPaginationList<TeamsResponse>>(`${environment.apiUrl}/teams?league=${league}&season=${season}`)
         .pipe(map(response => {
-            return response;
+            return response.response;
         }));
     }
 }
