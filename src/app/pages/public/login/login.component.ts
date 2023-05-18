@@ -13,10 +13,10 @@ export class LoginComponent {
   error: Boolean = false;
   form:FormGroup;
   constructor(private fb:FormBuilder,private router: Router, private auth: AuthService, ) {
-      this.form = this.fb.group({
-        key: ['',Validators.required]
-      });
-    }
+    this.form = this.fb.group({
+      key: ['',Validators.required]
+    });
+  }
 
   onSubmit(){
     const val = this.form.value;

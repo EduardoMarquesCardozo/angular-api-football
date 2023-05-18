@@ -1,47 +1,9 @@
-.login-container{
-    gap: 24px;
-    background-color: #FFF;
-    border-radius: 25px;
+.login{
     form{
         display: flex;
         flex-direction: column;
         gap: 24px;
-        label{
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 14px;
-            color: #0079FF;
-        }
-        .column{
-            > * {
-                padding: 2px 0;
-            }
-            input{
-                border: 1px solid #E4EBFB;
-                border-radius: 4px;
-                background: #FFFFFF;
-                padding: 16px;
-                :focus{
-                    border: 1px solid #66AFFF;
-                }
-            }
-        }
-        button{
-            border: 1px solid #a0ceff;
-            background: #66AFFF;
-            color: #FFF;
-            width: 100%;
-            &:hover{
-                border: 1px solid #66AFFF;
-                background:  #5491d1;
-            }
-        }
-        .alert{
-            color: #FF0100;
-        }
     }
-    
-
 }
 
 
