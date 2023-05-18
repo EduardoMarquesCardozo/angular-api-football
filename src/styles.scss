@@ -3,12 +3,13 @@ body{
     font-family: 'Roboto';
     font-style: normal;
     margin: 0px;
-    height: 100vh;
+    height: calc(100vh - 64px);
     color: #272e3b;
     background-color: #eaecf1;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    // padding: 32px;
+    // align-items: center;
+    // justify-content: center;
 }
 
 .ms{margin: 16px;}

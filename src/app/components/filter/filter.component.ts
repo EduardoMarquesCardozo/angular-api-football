@@ -2,21 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountryList } from 'src/app/data/country';
 import { CountryService } from 'src/app/services/country-service';
+import { LeagueService } from 'src/app/services/league-service';
 import { SeasonService } from 'src/app/services/season-service';
 
 @Component({
-  selector: 'app-countries',
-  templateUrl: './countries.component.html',
-  styleUrls: ['./countries.component.scss']
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss']
 })
-export class CountriesComponent implements OnInit {
+export class FilterComponent implements OnInit {
   error: boolean =false;
   countryValue: string ='';
   seasonValue: string ='';
   countries: CountryList[] =[];
   seasons: number[] =[];
   
-  constructor(private router: Router, private countryService: CountryService , private seasonService: SeasonService ) {}
+  constructor(
+    private router: Router, 
+    private countryService: CountryService, 
+    private seasonService: SeasonService,
+    private leagueService: LeagueService ) {}
 
   ngOnInit(): void {
     this.listCountries();
@@ -30,7 +35,7 @@ export class CountriesComponent implements OnInit {
           this.seasons = val;
         }
     );
-}
+  }
 
   listCountries(){
       this.countryService.listCountries()
@@ -45,13 +50,34 @@ export class CountriesComponent implements OnInit {
     let country = this.countries.find(x => x?.name === this.countryValue);
     let season = this.seasons.find(x => x === parseInt(this.seasonValue));
     if(country && season){
-      return false;
+      return true;
     }
-    return true;
+    return false;
+  }
+
+  getSeasonValue(){
+    let season = this.seasons.find(x => x === parseInt(this.seasonValue));
+    return season;
+  }
+
+  isCountryFilled(){
+    let country = this.countries.find(x => x?.name === this.countryValue);
+    return !!country;
+  }
+
+  searchLeague(){
+    if(this.isCountryFilled()){
+      this.leagueService.listLeagues(this.countryValue, this.getSeasonValue())
+      .subscribe(
+          (val) => {
+            console.log(val);
+          }
+      );
+    }
   }
 
   search(){
-    if(!this.isValuesFilled()){
+    if(this.isValuesFilled()){
       this.error = false;
       return;
     }

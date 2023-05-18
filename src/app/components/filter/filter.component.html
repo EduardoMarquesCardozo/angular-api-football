@@ -4,20 +4,20 @@
     </h3>
     <div class="flex column">
         <label>País</label>
-        <input type="text" list="codes" placeholder="Buscar país pelo nome" [(ngModel)]="countryValue"/>
+        <input type="text" list="codes" placeholder="Buscar país pelo nome" [(ngModel)]="countryValue" (ngModelChange)="searchLeague()"/>
     </div>
     <datalist id="codes">
         <option *ngFor="let c of countries" [value]="c.name" >{{c.name}}</option>
     </datalist>
     <div class="flex column">
         <label>Temporada</label>
-        <input type="text" list="seasons" placeholder="Buscar temporada" [(ngModel)]="seasonValue" />
+        <input type="text" list="seasons" placeholder="Buscar temporada" [(ngModel)]="seasonValue" (ngModelChange)="searchLeague()"/>
     </div>
     <datalist id="seasons">
         <option *ngFor="let s of seasons" [value]="s" >{{s}}</option>
     </datalist>
     <div>
-        <button type="button" class="ps" (click)="search()" [disabled]="isValuesFilled()">Buscar</button>
+        <button type="button" class="ps" (click)="search()" [disabled]="!isValuesFilled()">Buscar</button>
         <label class="alert" *ngIf="error">
             Favor informar um país e uma temporada
         </label>
