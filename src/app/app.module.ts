@@ -10,13 +10,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BasicAuthInterceptor } from './services/interceptors/basic-auth.interceptor';
 import { ErrorInterceptor } from './services/interceptors/error.interceptor';
 import { HomeComponent } from './pages/private/home/home.component';
+import { TeamContentComponent } from './components/team-content/team-content.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     FilterComponent,
-    HomeComponent
+    HomeComponent,
+    PlayerListComponent,
+    TeamContentComponent,
+    
   ],
   imports: [
     BrowserModule,

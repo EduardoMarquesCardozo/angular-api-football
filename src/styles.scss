@@ -9,12 +9,15 @@ body{
     display: flex;
     // padding: 32px;
     // align-items: center;
-    // justify-content: center;
+    justify-content: center;
 }
 
 .ms{margin: 16px;}
 .mm{margin: 32px;}
 .ml{margin: 64px;}
+
+.gs{gap: 16px;}
+.gm{gap: 32px;}
 
 .ps{padding: 16px;}
 .pm{padding: 32px;}
@@ -89,3 +92,31 @@ input{
     padding-top: 8px;
 }
 
+table {
+    width: 100%;
+    border-spacing: 0px;
+    thead {
+        border: 2px solid #80909b;
+        th {
+            text-transform: uppercase;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #F1F1F1;
+        }
+    }
+    tbody {
+        tr {
+            &:nth-child(odd) {
+                background-color: #f1faff;
+            }
+            &:nth-child(even) {
+                background-color: #e3ebf0;
+            }
+            border-bottom: 1px solid #F1F1F1;
+            td {
+                padding: 10px;
+                border: 1px solid #F1F1F1;
+            }
+        }
+    }
+}

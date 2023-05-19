@@ -1,0 +1,27 @@
+
+<div class="team-content container pm flex column">
+    <div class="flex row gs">
+        <button type="button" class="ps selected" [ngClass]="{'selected': currentTab ==1 }" (click)="currentTab = 1">
+            Lista de jogadores
+        </button>
+        <button type="button" class="ps" [ngClass]="{'selected': currentTab ==2 }" (click)="currentTab = 2">
+            Formações
+        </button>
+        <button type="button" class="ps" [ngClass]="{'selected': currentTab ==3 }" (click)="currentTab = 3">
+            Resultados
+        </button>
+        <button type="button" class="ps" [ngClass]="{'selected': currentTab ==4 }" (click)="currentTab = 4">
+            Gols
+        </button>
+    </div>
+    <div class="flex" *ngIf="currentTab == 0">
+        <h3>
+            Selecione os parametros do filtro.
+        </h3>
+    </div>
+    <app-player-list *ngIf="currentTab == 1"></app-player-list>
+    <app-statistic *ngIf="currentTab == 2"></app-statistic>
+    <app-statistic-table *ngIf="currentTab == 3"></app-statistic-table>
+    <app-statistic-goals *ngIf="currentTab == 4"></app-statistic-goals>
+    
+</div>
