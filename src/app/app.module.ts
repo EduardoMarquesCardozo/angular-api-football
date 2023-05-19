@@ -12,6 +12,8 @@ import { ErrorInterceptor } from './services/interceptors/error.interceptor';
 import { HomeComponent } from './pages/private/home/home.component';
 import { TeamContentComponent } from './components/team-content/team-content.component';
 import { PlayerListComponent } from './components/player-list/player-list.component';
+import { StatisticComponent } from './components/statistic/statistic.component';
+import { StatisticTableComponent } from './components/statistic-results/statistic-table.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
     HomeComponent,
     PlayerListComponent,
     TeamContentComponent,
-    
+    StatisticComponent,
+    StatisticTableComponent,    
   ],
   imports: [
     BrowserModule,
