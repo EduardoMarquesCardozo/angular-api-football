@@ -1,0 +1,14 @@
+<div class="container">
+    <table>
+        <thead>
+            <th>Formação</th>
+            <th>Nro. de jogos</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lineup of lineup">
+                <td>{{lineup.formation}}</td>
+                <td>{{lineup.played}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
