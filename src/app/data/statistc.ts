@@ -83,53 +83,18 @@ export interface Average {
 
 export interface Minute {
   "0-15": N015
-  "16-30": N1630
-  "31-45": N3145
-  "46-60": N4660
-  "61-75": N6175
-  "76-90": N7690
-  "91-105": N91105
-  "106-120": N106120
+  "16-30": N015
+  "31-45": N015
+  "46-60": N015
+  "61-75": N015
+  "76-90": N015
+  "91-105": N015
+  "106-120": N015
 }
 
 export interface N015 {
   total: number
   percentage: string
-}
-
-export interface N1630 {
-  total: number
-  percentage: string
-}
-
-export interface N3145 {
-  total: number
-  percentage: string
-}
-
-export interface N4660 {
-  total: number
-  percentage: string
-}
-
-export interface N6175 {
-  total: number
-  percentage: string
-}
-
-export interface N7690 {
-  total: number
-  percentage: string
-}
-
-export interface N91105 {
-  total: number
-  percentage: string
-}
-
-export interface N106120 {
-  total: any
-  percentage: any
 }
 
 export interface Against {
@@ -151,54 +116,14 @@ export interface Average2 {
 }
 
 export interface Minute2 {
-  "0-15": N0152
-  "16-30": N16302
-  "31-45": N31452
-  "46-60": N46602
-  "61-75": N61752
-  "76-90": N76902
-  "91-105": N911052
-  "106-120": N1061202
-}
-
-export interface N0152 {
-  total: number
-  percentage: string
-}
-
-export interface N16302 {
-  total: number
-  percentage: string
-}
-
-export interface N31452 {
-  total: number
-  percentage: string
-}
-
-export interface N46602 {
-  total: number
-  percentage: string
-}
-
-export interface N61752 {
-  total: number
-  percentage: string
-}
-
-export interface N76902 {
-  total: number
-  percentage: string
-}
-
-export interface N911052 {
-  total: number
-  percentage: string
-}
-
-export interface N1061202 {
-  total: any
-  percentage: any
+  "0-15": N015
+  "16-30": N015
+  "31-45": N015
+  "46-60": N015
+  "61-75": N015
+  "76-90": N015
+  "91-105": N015
+  "106-120": N015
 }
 
 export interface Biggest {

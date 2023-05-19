@@ -14,6 +14,8 @@ import { TeamContentComponent } from './components/team-content/team-content.com
 import { PlayerListComponent } from './components/player-list/player-list.component';
 import { StatisticComponent } from './components/statistic/statistic.component';
 import { StatisticTableComponent } from './components/statistic-results/statistic-table.component';
+import { StatisticGoalsComponent } from './components/statistic-goals/statistic-goals.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { StatisticTableComponent } from './components/statistic-results/statisti
     PlayerListComponent,
     TeamContentComponent,
     StatisticComponent,
-    StatisticTableComponent,    
+    StatisticTableComponent,
+    StatisticGoalsComponent,    
   ],
   imports: [
     BrowserModule,
