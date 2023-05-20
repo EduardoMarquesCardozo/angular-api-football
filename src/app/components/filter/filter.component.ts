@@ -108,13 +108,13 @@ export class FilterComponent implements OnInit {
       this.playerService.listPlayers(league.league.id, team.team.id,parseInt(this.seasonValue))
       .subscribe(
           (val) => {
-            this.sharingService.setPlayers(val);
+            this.sharingService.setPlayerData(val);
           }
       );
       this.statisticsService.listStatistics(league.league.id, team.team.id,parseInt(this.seasonValue))
       .subscribe(
           (val) => {
-            this.sharingService.setStatistics(val);
+            this.sharingService.setStatisticsData(val);
           }
       );
       

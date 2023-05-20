@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '
 import { StaticsMOCK } from 'src/app/data/mock';
 import { Chart, registerables, ChartData } from 'chart.js';
 import { Goals, StatisticResponse } from 'src/app/data/statistc';
+import { SharingService } from 'src/app/services/home-service';
 
 Chart.register(... registerables)
 
@@ -10,16 +11,20 @@ Chart.register(... registerables)
   templateUrl: './statistic-goals.component.html',
   styleUrls: ['./statistic-goals.component.scss']
 })
-export class StatisticGoalsComponent implements AfterViewInit {
-  @Input() statistics: StatisticResponse | undefined;
+export class StatisticGoalsComponent implements OnInit {
+  statistics?: StatisticResponse;
 
   chart: Chart | undefined;
-  goals:Goals | undefined;
+  goals?:Goals;
   minutes: string []= [];
   goalsTotal: number []= [];
 
-  ngAfterViewInit(): void {
-    this.goals = this.statistics!.goals;
+  constructor(private sharingService:SharingService) {}
+
+  ngOnInit(): void {
+    this.sharingService.getStatisticsData().subscribe(statistic => {
+      this.goals = statistic!.goals;
+    })
     this.fillData();
     this.createChart();
 
@@ -40,7 +45,6 @@ export class StatisticGoalsComponent implements AfterViewInit {
         else{
           this.goalsTotal.push(0);
         }
-        console.log(`Total for ${keyTyped}: ${total}`);
       }
     }
   }

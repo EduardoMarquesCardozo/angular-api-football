@@ -8,9 +8,15 @@ import { SharingService } from 'src/app/services/home-service';
   templateUrl: './player-list.component.html',
   styleUrls: ['./player-list.component.scss']
 })
-export class PlayerListComponent implements AfterViewInit{
-  @Input() playerList!: PlayerResponse[];
-  ngAfterViewInit(): void {
-    console.log(this.playerList);
+export class PlayerListComponent implements OnInit{
+  playerList?: PlayerResponse[];
+
+  constructor(private sharingService:SharingService,) {}
+
+  ngOnInit(): void {
+
+    this.sharingService.getPlayerData().subscribe(playerlist => {
+      this.playerList = playerlist;
+    })
   }
 }

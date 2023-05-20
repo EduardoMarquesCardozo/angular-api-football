@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { StaticsMOCK } from 'src/app/data/mock';
 import { Lineup, StatisticResponse } from 'src/app/data/statistc';
+import { SharingService } from 'src/app/services/home-service';
 
 @Component({
   selector: 'app-statistic',
@@ -8,12 +9,14 @@ import { Lineup, StatisticResponse } from 'src/app/data/statistc';
   styleUrls: ['./statistic.component.scss']
 })
 export class StatisticComponent implements OnInit{
+  statistics?: StatisticResponse;
+  lineup?: Lineup[];
   
-  @Input() statistics!: StatisticResponse;
-  lineup: Lineup[] | undefined;
+  constructor(private sharingService:SharingService) {}
   ngOnInit(): void {
-    console.log("AAAAAAAAAAA", this.statistics);
-    this.lineup = this.statistics!.lineups.sort((a, b) => b.played-a.played )
+    this.sharingService.getStatisticsData().subscribe(statistic => {
+      this.lineup = statistic!.lineups.sort((a, b) => b.played-a.played )
+    })
   }
-
+  
 }
