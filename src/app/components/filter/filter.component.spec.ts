@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CountriesComponent } from './countries.component';
 import { IPaginationList } from 'src/app/data/paging';
-import { CountryList } from 'src/app/data/country';
+import { CountryResponse } from 'src/app/data/country';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CountryService } from 'src/app/services/country-service';
 import { SeasonService } from 'src/app/services/season-service';
+import { FilterComponent } from './filter.component';
 
 class CountryServiceMock {
   listCountries() {
-    const countryList: IPaginationList<CountryList> = {
+    const countryList: IPaginationList<CountryResponse> = {
       get: "countries",
       parameters: [],
       errors: [],
@@ -58,18 +58,18 @@ class SeasonServiceMock {
 
 
 describe('CountriesComponent', () => {
-  let component: CountriesComponent;
-  let fixture: ComponentFixture<CountriesComponent>;
+  let component: FilterComponent;
+  let fixture: ComponentFixture<FilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [ CountriesComponent ],
+      declarations: [ FilterComponent ],
       providers: [{ provide: CountryService, useClass: CountryServiceMock }, { provide: SeasonService, useClass: SeasonServiceMock },],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CountriesComponent);
+    fixture = TestBed.createComponent(FilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
