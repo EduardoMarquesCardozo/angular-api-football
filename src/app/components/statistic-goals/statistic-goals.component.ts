@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { StaticsMOCK } from 'src/app/data/mock';
 import { Chart, registerables, ChartData } from 'chart.js';
-import { Goals } from 'src/app/data/statistc';
+import { Goals, StatisticResponse } from 'src/app/data/statistc';
 
 Chart.register(... registerables)
 
@@ -11,19 +11,22 @@ Chart.register(... registerables)
   styleUrls: ['./statistic-goals.component.scss']
 })
 export class StatisticGoalsComponent implements AfterViewInit {
+  @Input() statistics: StatisticResponse | undefined;
+
   chart: Chart | undefined;
-  goals  = StaticsMOCK.goals;
+  goals:Goals | undefined;
   minutes: string []= [];
   goalsTotal: number []= [];
 
   ngAfterViewInit(): void {
+    this.goals = this.statistics!.goals;
     this.fillData();
     this.createChart();
 
   }
 
   fillData() {
-    let data = this.goals.against.minute;
+    let data = this.goals!.against.minute;
     type KeyType = "0-15" | "16-30" | "31-45" | "46-60" | "61-75" | "76-90" | "91-105" | "106-120";
 
     for (let key in data) {

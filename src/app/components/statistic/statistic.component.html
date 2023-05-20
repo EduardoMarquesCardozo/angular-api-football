@@ -4,10 +4,10 @@
             <th>Formação</th>
             <th>Nro. de jogos</th>
         </thead>
-        <tbody>
-            <tr *ngFor="let lineup of lineup">
-                <td>{{lineup.formation}}</td>
-                <td>{{lineup.played}}</td>
+        <tbody *ngIf="lineup">
+            <tr *ngFor="let line of lineup">
+                <td>{{line.formation}}</td>
+                <td>{{line.played}}</td>
             </tr>
         </tbody>
     </table>

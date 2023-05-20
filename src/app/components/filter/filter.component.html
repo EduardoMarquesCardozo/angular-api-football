@@ -4,34 +4,34 @@
     </h3>
     <div class="flex column">
         <label>País</label>
-        <input type="text" list="codes" placeholder="Buscar país pelo nome" [(ngModel)]="countryValue" (ngModelChange)="searchLeague()"/>
+        <input type="text" list="codes" placeholder="Buscar país pelo nome" [(ngModel)]="countryValue" (ngModelChange)="listLeague()"/>
     </div>
     <datalist id="codes">
         <option *ngFor="let c of countries" [value]="c.name" >{{c.name}}</option>
     </datalist>
     <div class="flex column">
         <label>Temporada</label>
-        <input type="text" list="seasons" placeholder="Buscar temporada" [(ngModel)]="seasonValue" (ngModelChange)="searchLeague()"/>
+        <input type="text" list="seasons" placeholder="Buscar temporada" [(ngModel)]="seasonValue" (ngModelChange)="listLeague()"/>
     </div>
     <datalist id="seasons">
         <option *ngFor="let s of seasons" [value]="s" >{{s}}</option>
     </datalist>
     <div class="flex column">
         <label>Liga</label>
-        <input type="text" list="leagues" placeholder="Buscar ligas" [disabled]="!isCountryFilled()" [(ngModel)]="leagueValue" (ngModelChange)="searchTeams()"/>
+        <input type="text" list="leagues" placeholder="Buscar ligas" [disabled]="!areValuesFilled()" [(ngModel)]="leagueValue" (ngModelChange)="listTeams()"/>
     </div>
     <datalist id="leagues">
         <option *ngFor="let l of leagues" [value]="l.league.name" >{{l.league.name}}</option>
     </datalist>
     <div class="flex column">
         <label>Times</label>
-        <input type="text" list="teams" placeholder="Buscar times" [disabled]="!isCountryFilled()" [(ngModel)]="teamValue" />
+        <input type="text" list="teams" placeholder="Buscar times" [disabled]="!areValuesFilled()" [(ngModel)]="teamValue" />
     </div>
     <datalist id="teams">
         <option *ngFor="let t of teams" [value]="t.team.name" >{{t.team.name}}</option>
     </datalist>
     <div>
-        <button type="button" class="ps" (click)="search()" [disabled]="!isValuesFilled()">Buscar</button>
+        <button type="button" class="ps" (click)="search()" [disabled]="!areAllValuesFilled()">Buscar</button>
         <label class="alert" *ngIf="error">
             Favor informar um país e uma temporada
         </label>
