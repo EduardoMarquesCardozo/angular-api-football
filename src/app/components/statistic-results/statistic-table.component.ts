@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import { StaticsMOCK } from 'src/app/data/mock';
 import { Fixtures, StatisticResponse } from 'src/app/data/statistc';
 import { SharingService } from 'src/app/services/home-service';
@@ -9,14 +10,17 @@ import { SharingService } from 'src/app/services/home-service';
   styleUrls: ['./statistic-table.component.scss']
 })
 export class StatisticTableComponent implements OnInit {
-  statistics?: StatisticResponse;
+  statistics$?: Observable<StatisticResponse | undefined>;
+  fixtures$?: Observable<Fixtures> ;
+  
   constructor(private sharingService:SharingService) {}
 
-  fixtures?: Fixtures ;
-
   ngOnInit(): void {
-    this.sharingService.getStatisticsData().subscribe(statistic => {
-      this.fixtures = statistic!.fixtures
-    })
+    this.statistics$ = this.sharingService.getStatisticsData();
+    this.fixtures$ = this.statistics$.pipe(map(
+      respose =>{
+        return respose!.fixtures
+      }
+    ))
   }
 }

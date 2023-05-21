@@ -8,10 +8,10 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{fixtures?.played?.total}}</td>
-                <td>{{fixtures?.wins?.total}}</td>
-                <td>{{fixtures?.draws?.total}}</td>
-                <td>{{fixtures?.loses?.total}}</td>
+                <td>{{(fixtures$  | async)?.played?.total}}</td>
+                <td>{{(fixtures$  | async)?.wins?.total}}</td>
+                <td>{{(fixtures$  | async)?.draws?.total}}</td>
+                <td>{{(fixtures$  | async)?.loses?.total}}</td>
             </tr>
         </tbody>
     </table>

@@ -6,7 +6,7 @@
             <th>Nacionalidade</th>
         </thead>
         <tbody>
-            <tr *ngFor="let position of playerList">
+            <tr *ngFor="let position of playerList$ | async">
                 <td>{{position.player.name}}</td>
                 <td>{{position.player.age}}</td>
                 <td>{{position.player.nationality}}</td>

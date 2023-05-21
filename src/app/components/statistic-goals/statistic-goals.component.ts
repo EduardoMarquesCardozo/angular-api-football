@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { StaticsMOCK } from 'src/app/data/mock';
 import { Chart, registerables, ChartData } from 'chart.js';
 import { Goals, StatisticResponse } from 'src/app/data/statistc';
 import { SharingService } from 'src/app/services/home-service';
+import { Subscription } from 'rxjs';
 
 Chart.register(... registerables)
 
@@ -11,7 +12,8 @@ Chart.register(... registerables)
   templateUrl: './statistic-goals.component.html',
   styleUrls: ['./statistic-goals.component.scss']
 })
-export class StatisticGoalsComponent implements OnInit {
+export class StatisticGoalsComponent implements OnInit, OnDestroy {
+  subscription?: Subscription;
   statistics?: StatisticResponse;
 
   chart: Chart | undefined;
@@ -21,8 +23,12 @@ export class StatisticGoalsComponent implements OnInit {
 
   constructor(private sharingService:SharingService) {}
 
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
   ngOnInit(): void {
-    this.sharingService.getStatisticsData().subscribe(statistic => {
+    this.subscription = this.sharingService.getStatisticsData().subscribe(statistic => {
       this.goals = statistic!.goals;
     })
     this.fillData();

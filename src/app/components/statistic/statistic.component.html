@@ -4,8 +4,8 @@
             <th>Formação</th>
             <th>Nro. de jogos</th>
         </thead>
-        <tbody *ngIf="lineup">
-            <tr *ngFor="let line of lineup">
+        <tbody>
+            <tr *ngFor="let line of lineup$ | async">
                 <td>{{line.formation}}</td>
                 <td>{{line.played}}</td>
             </tr>
