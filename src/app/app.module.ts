@@ -15,6 +15,7 @@ import { PlayerListComponent } from './components/player-list/player-list.compon
 import { StatisticComponent } from './components/statistic/statistic.component';
 import { StatisticTableComponent } from './components/statistic-results/statistic-table.component';
 import { StatisticGoalsComponent } from './components/statistic-goals/statistic-goals.component';
+import { SharingService } from './services/home-service';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { StatisticGoalsComponent } from './components/statistic-goals/statistic-
     ReactiveFormsModule
   ],
   providers: [
+    SharingService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

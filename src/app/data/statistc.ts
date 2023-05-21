@@ -1,5 +1,5 @@
 
-export interface StatiticResponse {
+export interface StatisticResponse {
   league: League
   team: Team
   form: string

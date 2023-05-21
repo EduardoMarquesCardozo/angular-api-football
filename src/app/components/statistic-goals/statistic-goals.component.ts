@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { StaticsMOCK } from 'src/app/data/mock';
 import { Chart, registerables, ChartData } from 'chart.js';
-import { Goals } from 'src/app/data/statistc';
+import { Goals, StatisticResponse } from 'src/app/data/statistc';
+import { SharingService } from 'src/app/services/home-service';
+import { Subscription } from 'rxjs';
 
 Chart.register(... registerables)
 
@@ -10,20 +12,32 @@ Chart.register(... registerables)
   templateUrl: './statistic-goals.component.html',
   styleUrls: ['./statistic-goals.component.scss']
 })
-export class StatisticGoalsComponent implements AfterViewInit {
+export class StatisticGoalsComponent implements OnInit, OnDestroy {
+  subscription?: Subscription;
+  statistics?: StatisticResponse;
+
   chart: Chart | undefined;
-  goals  = StaticsMOCK.goals;
+  goals?:Goals;
   minutes: string []= [];
   goalsTotal: number []= [];
 
-  ngAfterViewInit(): void {
+  constructor(private sharingService:SharingService) {}
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.subscription = this.sharingService.getStatisticsData().subscribe(statistic => {
+      this.goals = statistic!.goals;
+    })
     this.fillData();
     this.createChart();
 
   }
 
   fillData() {
-    let data = this.goals.against.minute;
+    let data = this.goals!.against.minute;
     type KeyType = "0-15" | "16-30" | "31-45" | "46-60" | "61-75" | "76-90" | "91-105" | "106-120";
 
     for (let key in data) {
@@ -37,7 +51,6 @@ export class StatisticGoalsComponent implements AfterViewInit {
         else{
           this.goalsTotal.push(0);
         }
-        console.log(`Total for ${keyTyped}: ${total}`);
       }
     }
   }

@@ -14,7 +14,7 @@ export class LoggedinGuard {
     canActivate() {
         const key = this.auth.keyValue;
         if (key) {
-            this.router.navigate(['/country']);
+            this.router.navigate(['/home']);
             return false;
         }
         

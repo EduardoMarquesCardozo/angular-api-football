@@ -4,9 +4,12 @@ import { CountryResponse } from 'src/app/data/country';
 import { LeagueResponse } from 'src/app/data/league';
 import { TeamsResponse } from 'src/app/data/teams';
 import { CountryService } from 'src/app/services/country-service';
+import { SharingService } from 'src/app/services/home-service';
 import { LeagueService } from 'src/app/services/league-service';
 import { SeasonService } from 'src/app/services/season-service';
 import { TeamService } from 'src/app/services/team-service';
+import { PlayerService } from 'src/app/services/player-service';
+import { StatisticsService } from 'src/app/services/statistics-service';
 
 @Component({
   selector: 'app-filter',
@@ -25,11 +28,13 @@ export class FilterComponent implements OnInit {
   teams: TeamsResponse[] =[];
   
   constructor(
-    private router: Router, 
     private countryService: CountryService, 
     private seasonService: SeasonService,
     private leagueService: LeagueService,
-    private teamService: TeamService,) {}
+    private teamService: TeamService,
+    private playerService: PlayerService,
+    private statisticsService: StatisticsService,
+    private sharingService:SharingService,) {}
 
   ngOnInit(): void {
     this.listCountries();
@@ -54,7 +59,7 @@ export class FilterComponent implements OnInit {
       );
   }
 
-  isValuesFilled(){
+  areValuesFilled(){
     let country = this.countries.find(x => x?.name === this.countryValue);
     let season = this.seasons.find(x => x === parseInt(this.seasonValue));
     if(country && season){
@@ -62,20 +67,20 @@ export class FilterComponent implements OnInit {
     }
     return false;
   }
-
-  getSeasonValue(){
-    let season = this.seasons.find(x => x === parseInt(this.seasonValue));
-    return season;
-  }
-
-  isCountryFilled(){
+  areAllValuesFilled(){
     let country = this.countries.find(x => x?.name === this.countryValue);
-    return !!country;
+    let season = this.seasons.find(x => x === parseInt(this.seasonValue));
+    let league = this.leagues.find(x => x?.league.name === this.leagueValue);
+    let team = this.teams.find(x => x?.team.name === this.teamValue);
+    if(country && season && league && team){
+      return true;
+    }
+    return false;
   }
 
-  searchLeague(){
-    if(this.isCountryFilled()){
-      this.leagueService.listLeagues(this.countryValue, this.getSeasonValue())
+  listLeague(){
+    if(this.areValuesFilled()){
+      this.leagueService.listLeagues(this.countryValue, parseInt(this.seasonValue))
       .subscribe(
           (val) => {
             this.leagues = val;
@@ -84,7 +89,7 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  searchTeams(){
+  listTeams(){
     let league = this.leagues.find(x => x?.league.name === this.leagueValue);
     if(!!league){
       this.teamService.listTeams(league.league.id, parseInt(this.seasonValue))
@@ -97,7 +102,22 @@ export class FilterComponent implements OnInit {
   }
 
   search(){
-    if(this.isValuesFilled()){
+    let league = this.leagues.find(x => x?.league.name === this.leagueValue);
+    let team = this.teams.find(x => x?.team.name === this.teamValue);
+    if(!!team && !!league){
+      this.playerService.listPlayers(league.league.id, team.team.id,parseInt(this.seasonValue))
+      .subscribe(
+          (val) => {
+            this.sharingService.setPlayerData(val);
+          }
+      );
+      this.statisticsService.listStatistics(league.league.id, team.team.id,parseInt(this.seasonValue))
+      .subscribe(
+          (val) => {
+            this.sharingService.setStatisticsData(val);
+          }
+      );
+      
       this.error = false;
       return;
     }
