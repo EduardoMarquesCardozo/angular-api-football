@@ -28,7 +28,7 @@ export class LoginComponent {
               this.error = true;
               return;
             }
-            this.router.navigateByUrl('/country');
+            this.router.navigateByUrl('/home');
           }
       );
     }
