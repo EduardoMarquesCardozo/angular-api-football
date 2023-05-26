@@ -7,8 +7,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from 'src/app/services/auth-service';
 import { Router } from '@angular/router';
 
-
-
 class AuthServiceMock {
   login(key: string) {
     return of(key);
@@ -22,7 +20,11 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule,
+      ],
       declarations: [LoginComponent],
       providers: [{ provide: AuthService, useClass: AuthServiceMock }],
     }).compileComponents();
@@ -51,6 +53,22 @@ describe('LoginComponent', () => {
     component.onSubmit();
 
     expect(authServiceSpy).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith('/country');
+    expect(routerSpy).toHaveBeenCalledWith('/home');
+  });
+
+  it('should display error message when key is required but not provided', () => {
+    component.form.controls['key'].setValue('');
+    expect(component.form.valid).toBeFalsy();
+    expect(component.form.get('key')?.errors?.['required']).toBeTruthy();
+  });
+
+  it('should disable submit button when form is invalid', () => {
+    fixture.detectChanges();
+
+    component.form.controls['key'].setValue('');
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.nativeElement.querySelector('button');
+    expect(button.disabled).toBeTruthy();
   });
 });
