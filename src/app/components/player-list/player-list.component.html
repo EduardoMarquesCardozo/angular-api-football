@@ -1,16 +1,16 @@
 <div class="container player-list">
-    <table>
-        <thead>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Nacionalidade</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let position of playerList$ | async">
-                <td>{{position.player.name}}</td>
-                <td>{{position.player.age}}</td>
-                <td>{{position.player.nationality}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+      <th>Nome</th>
+      <th>Idade</th>
+      <th>Nacionalidade</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let position of playerList$ | async">
+        <td>{{ position.player.name }}</td>
+        <td>{{ position.player.age }}</td>
+        <td>{{ position.player.nationality }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

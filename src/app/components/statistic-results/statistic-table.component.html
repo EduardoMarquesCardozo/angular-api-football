@@ -1,18 +1,18 @@
 <div class="container">
-    <table>
-        <thead>
-            <th>Nro. de jogos</th>
-            <th>Vitórias</th>
-            <th>Empates</th>
-            <th>Derrotas</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{(fixtures$  | async)?.played?.total}}</td>
-                <td>{{(fixtures$  | async)?.wins?.total}}</td>
-                <td>{{(fixtures$  | async)?.draws?.total}}</td>
-                <td>{{(fixtures$  | async)?.loses?.total}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+      <th>Nro. de jogos</th>
+      <th>Vitórias</th>
+      <th>Empates</th>
+      <th>Derrotas</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ (fixtures$ | async)?.played?.total }}</td>
+        <td>{{ (fixtures$ | async)?.wins?.total }}</td>
+        <td>{{ (fixtures$ | async)?.draws?.total }}</td>
+        <td>{{ (fixtures$ | async)?.loses?.total }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

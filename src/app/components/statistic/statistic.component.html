@@ -1,14 +1,14 @@
 <div class="container">
-    <table>
-        <thead>
-            <th>Formação</th>
-            <th>Nro. de jogos</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let line of lineup$ | async">
-                <td>{{line.formation}}</td>
-                <td>{{line.played}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+      <th>Formação</th>
+      <th>Nro. de jogos</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let line of lineup$ | async">
+        <td>{{ line.formation }}</td>
+        <td>{{ line.played }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

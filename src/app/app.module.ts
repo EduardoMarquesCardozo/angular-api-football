@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/public/login/login.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BasicAuthInterceptor } from './services/interceptors/basic-auth.interceptor';
 import { ErrorInterceptor } from './services/interceptors/error.interceptor';
@@ -17,7 +16,6 @@ import { StatisticTableComponent } from './components/statistic-results/statisti
 import { StatisticGoalsComponent } from './components/statistic-goals/statistic-goals.component';
 import { SharingService } from './services/home-service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,20 +26,20 @@ import { SharingService } from './services/home-service';
     TeamContentComponent,
     StatisticComponent,
     StatisticTableComponent,
-    StatisticGoalsComponent,    
+    StatisticGoalsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     SharingService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

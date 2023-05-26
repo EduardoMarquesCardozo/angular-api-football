@@ -2,22 +2,17 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../auth-service';
 
-
-
 @Injectable({ providedIn: 'root' })
 export class LoggedinGuard {
-    constructor(
-        private router: Router,
-        private auth: AuthService
-    ) { }
+  constructor(private router: Router, private auth: AuthService) {}
 
-    canActivate() {
-        const key = this.auth.keyValue;
-        if (key) {
-            this.router.navigate(['/home']);
-            return false;
-        }
-        
-        return true;
+  canActivate() {
+    const key = this.auth.keyValue;
+    if (key) {
+      this.router.navigate(['/home']);
+      return false;
     }
+
+    return true;
+  }
 }

@@ -7,16 +7,14 @@ import { SharingService } from 'src/app/services/home-service';
 @Component({
   selector: 'app-player-list',
   templateUrl: './player-list.component.html',
-  styleUrls: ['./player-list.component.scss']
+  styleUrls: ['./player-list.component.scss'],
 })
-export class PlayerListComponent implements OnInit{
+export class PlayerListComponent implements OnInit {
   playerList$?: Observable<PlayerResponse[] | undefined>;
 
-  constructor(private sharingService:SharingService) {
-
-  }
+  constructor(private sharingService: SharingService) {}
 
   ngOnInit(): void {
-    this.playerList$ = this.sharingService.getPlayerData()
+    this.playerList$ = this.sharingService.getPlayerData();
   }
 }
